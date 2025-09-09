@@ -7,7 +7,7 @@ ChatFlowToolkit 是一个处理对话流输入的工具箱，可以把用户的�
 
 该插件适用于需要处理文件上传的场景，例如让用户发文件并提取文件链接、检查文件类型、整理文件列表等。
 
-该插件已在 GitHub 上开源，如果您在使用过程中遇到任何 Bug，或者有新的功能需求和改进建议，都可以直接在 GitHub 上提交反馈或参与开发，项目地址：https://github.com/SinguJ/open-coze/Plugins/ChatFlowToolkit
+该插件已在 GitHub 上开源，如果您在使用过程中遇到任何 Bug，或者有新的功能需求和改进建议，都可以直接在 GitHub 上提交反馈或参与开发，项目地址：https://github.com/SinguJ/open-coze/tree/master/Plugins/ChatFlowToolkit
 
 **ParseUserInput 工具说明**
 
