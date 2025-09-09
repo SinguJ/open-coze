@@ -1,0 +1,3 @@
+name: ChatFlowToolkit
+dependencies:
+  - wildcard: v2.0.1

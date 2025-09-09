@@ -1,0 +1,94 @@
+name: ParseUserInput
+description: |
+  解析对话流的 USER_INPUT 参数，将用户消息与用户上传的文件分离。
+inputs:
+  $USER_INPUT:
+    type: String
+    required: true
+    description: 对话流的 USER_INPUT 参数
+  $GetExtraAttrs:
+    type: Boolean
+    required: false
+    description: 是否获取扩展属性，默认为 false。此功能会影响执行速度！
+outputs:
+  $UserMessage:
+    type: String
+    required: true
+    description: 用户在输入框中输入的消息
+  $Files:
+    type: Array
+    required: true
+    description: 文件属性列表
+    item:
+      type: Object
+      required: true
+      description:
+      attributes:
+        $Domain:
+          type: String
+          required: true
+          description: 域名
+        $UserID:
+          type: String
+          required: true
+          description: 所属用户 ID
+        $Type:
+          type: String
+          required: true
+          description: 文件类型（根据 MIME 推测的扣子平台文件分类类型，示例 `Doc`，不保证准确）
+        $MediaType:
+          type: String
+          required: true
+          description: 媒体类型（MIME，示例 `text/plain`）
+        $URL:
+          type: String
+          required: true
+          description: 文件访问地址
+        $Name:
+          type: String
+          required: true
+          description: 文件名（示例 `test.txt`）
+        $ExtName:
+          type: String
+          required: true
+          description: 文件扩展名（示例 `.txt`）
+        $LK3S:
+          type: String
+          required: true
+          description: 不知道干啥的....
+        $Expires:
+          type: Integer
+          required: true
+          description: 过期时间（秒级时间戳，示例 `3392838427`）
+        $ParsedExpires:
+          type: String
+          required: true
+          description: 解析出的过期时间（示例 `2077-07-07 07:07:07`）
+        $Signature:
+          type: String
+          required: true
+          description: 文件签名
+        $Charset:
+          type: String
+          required: false
+          description: 文件字符类型（仅部分文件会有，示例 `utf-8`）
+        $Size:
+          type: Integer
+          required: false
+          description: 文件大小（字节），仅在输入参数中的 GetExtraAttrs 为 true 时有值
+        $HumanReadableSize:
+          type: String
+          required: false
+          description: 适合人类阅读的文件大小（示例 `3.15GB`），仅在输入参数中的 GetExtraAttrs 为 true 时有值
+        $UploadDatetime:
+          type: String
+          required: false
+          description: 上传时间（来自文件的 lastModified 属性，示例 `2077-07-07 07:07:07`），仅在输入参数中的 GetExtraAttrs 为 true 时有值
+        $MediaTypeArgs:
+          type: String
+          required: true
+          description: 媒体类型参数（MIME，示例 `charset=utf-8`）
+  $HasFile:
+    type: Boolean
+    required: true
+    description: 本次输入中是否存在文件，为 true 表示存在，为 false 表示不存在
