@@ -1,0 +1,110 @@
+name: ChatModel
+description: |
+  基于 init_chat_model 的对话模型
+inputs:
+  $model:
+    type: String
+    required: true
+    description: |
+      模型名称，只要是符合 LangChain 框架 init_chat_model 函数规范的模型名称都可以。示例：`gemini-2.5-pro`，`openai:gpt-4.1-mini`。建议使用 302.AI 的模型中转服务，并将所有模型名称都以 `openai:` 开头，例如：`openai:gemini-2.5-pro`
+  $model_provider:
+    type: String
+    required: false
+    description: 模型提供商，例如：`openai`、`anthropic`
+  $api_key:
+    type: String
+    required: true
+    description: API Key
+  $base_url:
+    type: String
+    required: false
+    description: |
+      API 端点地址，例如：`https://api.openai.com/v1`，当使用 302.AI 时，建议将该值填写为 `https://api.302ai.cn/v1`
+  $messages:
+    type: Array
+    required: true
+    description: 消息列表
+    item:
+      type: Object
+      required: true
+      description: |
+        消息体，可采用 {'role': 'system', 'content': '...'} 的方式提供，或者使用本插件中的 PromptTemplate 工具。
+      attributes:
+        $id:
+          type: String
+          required: false
+          description: ID
+        $name:
+          type: String
+          required: false
+          description: 名称
+        $role:
+          type: String
+          required: true
+          description: 角色；枚举，取值范围 [system, user, human, ai, assistant]
+        $content:
+          type: String
+          required: true
+          description: 消息
+  $temperature:
+    type: Number
+    required: false
+    description: 生成随机性
+  $max_tokens:
+    type: Integer
+    required: false
+    description: 最大回复长度
+  $kwargs:
+    type: Array
+    required: true
+    description: 更多模型参数
+    item:
+      type: Object
+      required: true
+      description: |
+        模型参数
+      attributes:
+        $key:
+          type: String
+          required: true
+          description: 参数键
+        $type:
+          type: String
+          required: false
+          description: |
+            参数类型，默认视为 str，用于内部转换 value 参数。当为 str 时不做转换；当为 int 或 float 时，转换为对应数值类型；当为 json 时转为 JSON 对象或 JSON 数组。
+        $value:
+          type: String
+          required: true
+          description: 参数值
+outputs:
+  $content:
+    type: String
+    required: true
+    description: 本次调用产生的 AI 回复
+  $messages:
+    type: Array
+    required: true
+    description: 最新的消息列表，含本次产生的 AI 消息，可用于下轮对话
+    item:
+      type: Object
+      required: true
+      description: |
+        消息体
+      attributes:
+        $id:
+          type: String
+          required: false
+          description: ID
+        $name:
+          type: String
+          required: false
+          description: 名称
+        $role:
+          type: String
+          required: true
+          description: 角色
+        $content:
+          type: String
+          required: true
+          description: 消息

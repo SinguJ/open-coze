@@ -1,0 +1,81 @@
+name: PromptTemplate
+description: |
+  提示词模板工具；详细用法见 **运行示例**（该工具节点配置 **输出** 栏中的 **查看示例** 按钮）
+inputs:
+  $system:
+    type: String
+    required: false
+    description: 系统消息
+  $systems:
+    type: Array
+    required: false
+    description: 系统消息组；将以 `\n` 拼接所有系统消息，`system` 参数将被拼接在末尾。
+    item:
+      type: String
+      required: false
+      description: 系统消息
+  $user_input:
+    type: String
+    required: false
+    description: 用户输入
+  $user_inputs:
+    type: Array
+    required: false
+    description: 用户输入组；将以 `\n` 拼接所有用户消息，`user_input` 参数将被拼接在末尾。
+    item:
+      type: String
+      required: false
+      description: 用户输入
+  $messages:
+    type: Array
+    required: false
+    description: 消息列表；用于合并之前的消息，若其中存在 system 消息，则会被清除
+    item:
+      type: Object
+      required: false
+      description: |
+        消息对象
+      attributes:
+        $id:
+          type: String
+          required: false
+          description: ID
+        $name:
+          type: String
+          required: false
+          description: 名称
+        $role:
+          type: String
+          required: true
+          description: 角色；枚举，取值范围 [system, user, human, ai, assistant]
+        $content:
+          type: String
+          required: true
+          description: 消息
+outputs:
+  $messages:
+    type: Array
+    required: true
+    description: 消息列表
+    item:
+      type: Object
+      required: true
+      description: |
+        消息对象
+      attributes:
+        $id:
+          type: String
+          required: true
+          description: ID；通常是空字符串
+        $name:
+          type: String
+          required: true
+          description: 名称；通常是空字符串
+        $role:
+          type: String
+          required: true
+          description: 角色；枚举 [system, human, ai]
+        $content:
+          type: String
+          required: true
+          description: 消息内容

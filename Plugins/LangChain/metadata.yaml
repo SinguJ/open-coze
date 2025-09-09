@@ -1,0 +1,8 @@
+name: LangChain
+runtime: Python3
+dependencies:
+  - langchain: v1.0.0a2
+  - langchain-anthropic: v1.0.0a1
+  - langchain-community: v0.3.29
+  - langchain-core: v1.0.0a1
+  - langchain-openai: v1.0.0a1
