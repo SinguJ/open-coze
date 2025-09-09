@@ -9,7 +9,6 @@
 - `ChatModel`:
   - `main.py`: 工具源代码
   - `metadata.yaml`: 工具元数据
-  - `test-USER_INPUT.txt`: 用于测试的 `USER_INPUT` 参数
 - `PromptTemplate`:
   - `main.py`: 工具源代码
   - `metadata.yaml`: 工具元数据
