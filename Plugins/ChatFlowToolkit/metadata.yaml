@@ -1,3 +1,4 @@
 name: ChatFlowToolkit
+runtime: Node.js
 dependencies:
   - wildcard: v2.0.1
